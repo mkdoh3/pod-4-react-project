@@ -3,9 +3,7 @@ import "./App.css";
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <p>This is some title</p>
-            </header>
+            <h1>Hello World!</h1>
         </div>
     );
 }
