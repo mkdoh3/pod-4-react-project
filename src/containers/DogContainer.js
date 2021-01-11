@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+// import { NavLink } from 'react-router-dom';
 import Select from "../components/Select";
+import Picture from "../components/Picture";
 class DogContainer extends Component {
     state = {
         breeds: [],
@@ -15,7 +17,17 @@ class DogContainer extends Component {
             });
     }
 
-    handleOnChange = () => {};
+    handleOnChange = (e) => {
+        let selectedBreed = e.target.value
+        fetch(`https://dog.ceo/api/breed/${selectedBreed}/images/random`)
+        .then(res => res.json())
+        .then(message => {
+            this.setState({
+                images: message
+            })
+        })
+        }
+        // .then(json => this.setState({images: json}))
 
     render() {
         return (
@@ -26,9 +38,11 @@ class DogContainer extends Component {
                     options={this.state.breeds}
                     handleOnChange={this.handleOnChange}
                 />
+                <Picture images={this.state.images}/>
             </div>
         );
     }
 }
 
 export default DogContainer;
+
