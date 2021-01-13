@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const Picture = props => {
-  console.log(props);
-  return (
-    <div><img src={props.src}></img></div>
-  )
-}
+const Picture = (props) => {
+    const style = {
+        height: "150px",
+    };
+    return (
+        <div>
+            <img style={style} src={props.src}></img>
+        </div>
+    );
+};
 
 export default Picture;
