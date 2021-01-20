@@ -6,7 +6,7 @@ const Picture = (props) => {
     };
     return (
         <div>
-            <img style={style} src={props.src}></img>
+            <img style={style} src={props.url}></img>
         </div>
     );
 };

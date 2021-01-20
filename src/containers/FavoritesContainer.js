@@ -1,32 +1,27 @@
-import React, { Component } from "react";
-import { store } from "../store";
+import React from "react";
 import Picture from "../components/Picture";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-class FavoritesContainer extends Component {
-    state = {
-        favorites: store.favorites,
-    };
-
-    renderPictures = () =>
-        this.state.favorites.map((url) => {
-            return (
-                <div>
-                    <Picture src={url} />
-                    <button onClick={() => this.addToFavorites(url)}>
-                        Favorite
-                    </button>
-                </div>
-            );
-        });
-    render() {
-        return (
-            <div>
-                <Link to="/">Home</Link>
-                {this.renderPictures()}
-            </div>
-        );
-    }
+function FavoritesContainer(props) {
+    return (
+        <div className="container">
+            <h2>Favorites!</h2>
+            {props.favorites.map((imgURL, index) => {
+                console.log(imgURL);
+                return (
+                    <>
+                        <Picture key={index} url={imgURL} altText={`a dog`} />
+                    </>
+                );
+            })}
+            <Link to={"/"}>Home</Link>
+        </div>
+    );
 }
 
-export default FavoritesContainer;
+const mapStateToProps = (state) => ({
+    favorites: state.favorites,
+});
+
+export default connect(mapStateToProps)(FavoritesContainer);
